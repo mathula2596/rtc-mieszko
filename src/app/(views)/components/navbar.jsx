@@ -30,53 +30,72 @@ export const DashboardNavbar = () => {
         }
     }, []);
 
+    // const registerServiceWorker = async () => {
+    //     if ('serviceWorker' in navigator) {
+    //       try {
+    //         const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    //         console.log('Service Worker registered with scope:', registration.scope);
+    //       } catch (err) {
+    //         console.error('Service Worker registration failed:', err);
+    //       }
+    //     }
+    // };
+
+
+    // // useEffect(() => {
+    // //     const socket = io('http://localhost:3005');
+    // //     socket.on('test', (data) => {
+    // //         getNotifications();
+    // //     });
+    // // }, []);
 
     // useEffect(() => {
-    //     const socket = io('http://localhost:3005');
-    //     socket.on('test', (data) => {
-    //         getNotifications();
-    //     });
+    //     registerServiceWorker().then(() => {
+    //         requestNotificationPermission();
+    //       });
     // }, []);
 
-    useEffect(() => {
-        requestNotificationPermission();
-    }, []);
+    // const requestNotificationPermission = async () => {
+    //     if ('Notification' in window) {
+    //         generateToken();
+    //     }
+    // };
 
-    const requestNotificationPermission = async () => {
-        if ('Notification' in window) {
-            generateToken();
-        }
-    };
+    // const generateToken = async () => {
+    //     const firebaseConfig = {
+    //         apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    //         authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    //         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    //         storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    //         messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    //         appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    //     };
 
-    const generateToken = async () => {
-        const firebaseConfig = {
-            apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-            authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-            projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-            storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-            messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-            appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-        };
+    //     const permission = await Notification.requestPermission();
+    //     // if (permission === 'granted') {
+    //     //     const app = !getApps().length ? await initializeApp(firebaseConfig) : getApp();
+    //     //     const messaging = await getMessaging(app);
+    //     //     // const token = await getToken(messaging, { vapidKey: process.env.VAPID_KEY });
 
-        const permission = await Notification.requestPermission();
-        if (permission === 'granted') {
-            const app = !getApps().length ? await initializeApp(firebaseConfig) : getApp();
-            const messaging = await getMessaging(app);
-            const token = await getToken(messaging, { vapidKey: process.env.VAPID_KEY });
-            console.log(token);
-            saveToken(token);
-            return token;
-        }
-    };
+    //     //     // messaging.onMessage((payload) => {
+    //     //     //     console.log('Message received. ', payload);
+    //     //     //     // Customize notification here or perform other actions
+    //     //     // });
 
-    const saveToken = async (token) => {
-        try {
-            const response = await axios.post('/api/notificationToken', { token });
-            // console.log(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    //     //     console.log(token);
+    //     //     // saveToken(token);
+    //     //     return token;
+    //     // }
+    // };
+
+    // const saveToken = async (token) => {
+    //     try {
+    //         const response = await axios.post('/api/notificationToken', { token });
+    //         // console.log(response.data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
     const getUserData = async () => {
         try {

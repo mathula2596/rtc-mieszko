@@ -41,7 +41,7 @@ export async function PUT(request, { params }) {
         // console.log(userRole)
         if(userRole==="Admin")
         {
-            console.log('admin true');
+            // console.log('admin true');
             const { department,price } = reqBody;
             const verificationData = "Pending Approval"
             // const isCompleted = true
@@ -73,8 +73,11 @@ export async function PUT(request, { params }) {
 
             await newNotification.save()
 
+            console.log("super",superUserArray);
+
             const usersTokens = await NotificationTokenModel.find({user_id:{$in:superUserArray}}).select("token")
             const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
+
             console.log(tokenArray)
             if(usersTokens!=""){
     
@@ -83,21 +86,19 @@ export async function PUT(request, { params }) {
                         title:"RTC",
                         body:"New Pending Approval List"
                     },
-                 
                     tokens:tokenArray
                 };
                 const sendMsg=await admin.messaging().sendEachForMulticast(message)
-                    .then((response) => {
-                        console.log('response send');
-                        console.log(message);
+                .then((response) => {
                         // Response is a message ID string.
-                        console.log('Successfully Admin sent message:', response);
+                        console.log('Successfully store sent message:', response);
                     })
                     .catch((error) => {
-                        console.log('Error sending message:', error.message);
+                        console.log('Error sending message:', error);
                 });
-                console.log('send messgae');
-                console.log(sendMsg);
+
+                // console.log('send messgae');
+                // console.log(sendMsg);
             }
 
             if (!rtc) {
