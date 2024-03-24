@@ -14,23 +14,12 @@ export const SocketContextProvider = ({children}) => {
 
         if(socket==null) {
 
-            const socketIo = io('http://localhost:3005',{ reconnectionDelay: 1000,
-                reconnection:true,
-                reconnectionAttempts: 5,
-                agent: false,
-                upgrade: false,
-                rejectUnauthorized: false,
-                withCredentials: true,
-            });
+            const socketIo = io('http://localhost:3005');
 
-                setSocket(socketIo);
-
-              
-
-                return () => {
-                    socketIo.disconnect();
-                };
-         
+            setSocket(socketIo);
+            return () => {
+                socketIo.disconnect();
+            };
            
         }
         

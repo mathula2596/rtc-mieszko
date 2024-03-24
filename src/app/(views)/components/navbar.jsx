@@ -8,7 +8,7 @@ import { io } from 'socket.io-client';
 import { Navbar, DarkThemeToggle } from 'flowbite-react';
 import { useSidebarContext } from '../context/sidebarContext';
 import { isSmallScreen } from '../../../helpers/helpers';
-// import { SocketContext } from '../context/socketContext';
+import { SocketContext } from '../context/socketContext';
 // import { ProfileContext } from '../context/profileContext';
 
 export const DashboardNavbar = () => {
@@ -41,13 +41,27 @@ export const DashboardNavbar = () => {
     //     }
     // };
 
+    
 
-    // // useEffect(() => {
-    // //     const socket = io('http://localhost:3005');
-    // //     socket.on('test', (data) => {
-    // //         getNotifications();
-    // //     });
-    // // }, []);
+    useEffect(() => {
+        // const socket = io('http://localhost:3005');
+        // if(socket!=null)
+        // {
+            // console.log('socket', socket);
+            // socket.on('test', (data) => {
+            //     getNotifications();
+            // });
+        // }
+        checkNotification()
+    }, []);
+
+    const socket = useContext(SocketContext).socket;
+    const checkNotification = async () =>{
+        await socket.on('test', (data) => {
+            getNotifications();
+        });
+        console.log('socket', socket);
+    }
 
     // useEffect(() => {
     //     registerServiceWorker().then(() => {

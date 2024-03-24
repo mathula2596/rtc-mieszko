@@ -90,7 +90,7 @@ const ListRtc = () => {
   const openNew = () => {
     router.push('/rtc/create')
   }
-  // const socket = useContext(SocketContext).socket;
+  const socket = useContext(SocketContext).socket;
 
   const approveMulti = async () => {
     try {
@@ -129,12 +129,19 @@ const ListRtc = () => {
     try {
 
       const response = await axios.put(`/api/rtc/${selectedId}`, rtc);
-      closeModal()
+      console.log(socket);
+
+      socket.emit("test", { message: "triggered" });
+      if(response.data.success){
+        console.log("socket");
+
+        closeModal()
+
+      }
       getRtc()
-      const socket = io('http://localhost:3005');
+      // const socket = io('http://localhost:3005');
     //   socket.emit("test",{message:"Triggeer"})
     //   const socket = useContext(SocketContext);
-      socket.emit("test", { message: response.data.message });
       
     } catch (error) {
       console.log(error);

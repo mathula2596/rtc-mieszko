@@ -23,7 +23,7 @@ const EditRtc = ({ params }) => {
     price: "",
     updatedQty: "",
   });
-    // const socket = useContext(SocketContext).socket;
+    const socket = useContext(SocketContext).socket;
 
   const onUpdate = async () => {
     try {
@@ -31,10 +31,14 @@ const EditRtc = ({ params }) => {
       console.log(response);
       Notify({ message: response.data.message, success: true });
 
-      const socket = io("http://localhost:3005");
-      socket.emit("test", { message: "Triggeer" });
-        // socket.emit("test", { message: response.data.message });
+      // const socket = io("http://localhost:3005");
+      // socket.emit("test", { message: "Triggeer" });
+      console.log("socket",socket);
+      
+        socket.emit("test", { message: response.data.message });
       // router.push("/rtc")
+      console.log("triggered");
+
     } catch (error) {
       console.log(error);
     }

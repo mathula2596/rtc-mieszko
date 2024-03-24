@@ -78,7 +78,7 @@ export async function PUT(request, { params }) {
             const usersTokens = await NotificationTokenModel.find({user_id:{$in:superUserArray}}).select("token")
             const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
 
-            console.log(tokenArray)
+            // console.log(tokenArray)
             if(usersTokens!=""){
     
                 var message = {
@@ -141,7 +141,7 @@ export async function PUT(request, { params }) {
 
                 const usersTokens = await NotificationTokenModel.find({user_id:{$in:storeUserArray}}).select("token")
                 const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
-                console.log(tokenArray)
+                // console.log(tokenArray)
                 
                 if(usersTokens!=""){
         
@@ -205,7 +205,7 @@ export async function PUT(request, { params }) {
                     await newNotification.save()
                     const usersTokens = await NotificationTokenModel.find({user_id:{$in:storeUserArray}}).select("token")
                     const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
-                    console.log(tokenArray)
+                    // console.log(tokenArray)
                     if(usersTokens!=""){
             
                         var message = {
@@ -261,7 +261,7 @@ export async function PUT(request, { params }) {
 
                     const usersTokens = await NotificationTokenModel.find({user_id:{$in:storeUserArray}}).select("token")
                     const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
-                    console.log(tokenArray)
+                    // console.log(tokenArray)
                     if(usersTokens!=""){
             
                         var message = {
@@ -324,7 +324,7 @@ export async function PUT(request, { params }) {
 
             const usersTokens = await NotificationTokenModel.find({user_id:{$in:storeUserArray}}).select("token")
             const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
-            console.log(tokenArray)
+            // console.log(tokenArray)
             if(usersTokens!=""){
     
                 var message = {

@@ -19,7 +19,7 @@ const CreateRtc = () => {
     price: "",
     updatedQty: "",
   });
-  // const socket = useContext(SocketContext).socket;
+  const socket = useContext(SocketContext).socket;
 
   const onCreate = async () => {
     try {
@@ -39,8 +39,10 @@ const CreateRtc = () => {
           _id: "",
         });
 
-        const socket = io("http://localhost:3005");
-        socket.emit("test", { message: response.data.message });
+        // const socket = io("http://localhost:3005");
+        // console.log("socket", socket);
+        socket.emit("test", { message: "triggered" });
+        console.log("triggered");
       }
     } catch (error) {
       console.log(error);

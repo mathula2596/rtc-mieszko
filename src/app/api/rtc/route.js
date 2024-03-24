@@ -124,7 +124,7 @@ export async function POST(request) {
                 .catch((error) => {
                     console.log('Error sending message:', error);
             });
-            console.log(sendMsg)
+            // console.log(sendMsg)
         }
 
         // Client.sendMessage(req.body.phoneNumber, req.body.message);
@@ -176,7 +176,7 @@ export async function PUT(request) {
 
             const usersTokens = await NotificationTokenModel.find({user_id:{$in:storeUserArray}}).select("token")
             const tokenArray = usersTokens.map(obj => (obj.token.toString() ));
-            console.log(tokenArray)
+            // console.log(tokenArray)
             const FirebaseApp = getApps().length ? getApp() : initializeApp({
                 credential: admin.credential.cert(serviceAccount)
             });
